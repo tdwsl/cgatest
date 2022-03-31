@@ -3,7 +3,7 @@
   org 0100h
 
 start:
-  push sp
+  mov [stackptr],sp
 
   ; cga mode
   mov ah,00h
@@ -18,7 +18,7 @@ start:
   call mainloop
 
 quit:
-  pop sp
+  mov sp,[stackptr]
 
   ; text mode
   mov ah,00h
@@ -216,6 +216,9 @@ drawtile0:
   mov es,ax
 
   ret
+  
+stackptr:
+  dw 0
 
 ; level data
 player:
